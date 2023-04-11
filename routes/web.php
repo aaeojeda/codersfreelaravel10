@@ -16,13 +16,20 @@ use App\Http\Controllers\CursoController;
 
 Route::get('/', HomeController::class);
 
-Route::get('/cursos', [CursoController::class, 'index']);
+Route::controller(CursoController::class)->group(function(){
+    Route::get('cursos', 'index');
+    Route::get('cursos/create', 'create');
+    Route::get('cursos/{curso}', 'show');
+});
 
+
+/* SE COMENTÓ - SE PASÓ A UN GRUPO DE RUTAS
+Route::get('/cursos', [CursoController::class, 'index']); //válido desde laravel8
 Route::get('/cursos/create',[CursoController::class, 'create']);
-
 Route::get('/cursos/{curso}', [CursoController::class, 'show']);
+*/
 
-/*
+/* SE COMENTÓ - ES EJEMPLO DE COMO RECIBIR O NO UN PARAMETRO
 Route::get('/cursos/{curso}/{categoria?}', function ($curso, $categoria = null) {
     if ($categoria){
         return "Bienvenido al curso ".$curso.", de la categoría ".$categoria;
