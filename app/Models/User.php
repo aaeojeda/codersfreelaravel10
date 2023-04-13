@@ -8,6 +8,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+//se añade el paquete atributos
+//se añade el paquete atributos
+use Illuminate\Database\Eloquent\Casts\Attribute;
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -41,4 +45,29 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //se crea un método protegido(protected) con el nombre del atributo a modificar
+    //se crea un método protegido(protected) con el nombre del atributo a modificar
+    protected function name():Attribute
+    {
+        //esta es la forma de definirlo, pero se puede usar la "función flecha"
+        //esta es la forma de definirlo, pero se puede usar la "función flecha"
+        /*return new Attribute(
+            get: function($value){
+                return ucwords($value);
+            },
+            set: function($value){
+                return strtolower($value);
+            }
+        );*/
+
+        //forma de definir usando la "funcion flecha de php"
+        //forma de definir usando la "funcion flecha de php"
+        return new Attribute(
+            get: fn($value) => ucwords($value),
+            set: fn($value) => strtolower($value)
+        );
+
+    }
+
 }
