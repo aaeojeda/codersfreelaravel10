@@ -3,8 +3,9 @@
 @section('title','Cursos - mostrando')
     
 @section('content')
+<a href="{{route('cursos.index')}}">Regresar</a>&nbsp;|&nbsp;
+<a href="{{route('cursos.edit',$curso->id)}}">Editar curso</a>
     <h1>Curso:: {{$curso->nombre}}</h1>
-    <a href="{{route('cursos.index')}}">Regresar</a>
     <br>
     <h4>Categoria:: {{$curso->categoria}}</h4>
     <br>

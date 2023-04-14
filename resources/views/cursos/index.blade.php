@@ -8,7 +8,7 @@
     <a href="{{route('cursos.create')}}">Crear un curso</a>
     <ul>
         @foreach ($cursos as $curso)
-            <li><a href="{{route('cursos.show',$curso->id)}}">{{$curso->nombre}}</a></li>
+            <li>[ <a href="{{route('cursos.edit',$curso->id)}}">edit</a> ] - <a href="{{route('cursos.show',$curso->id)}}">{{$curso->nombre}}</a></li>
         @endforeach
     </ul>
     <!-- se usa links para que de forma automatica haga la paginación -->
