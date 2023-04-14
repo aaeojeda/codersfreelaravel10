@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Curso;
+use App\Http\Requests\StoreCurso;
 use Illuminate\Http\Request;
 
 class CursoController extends Controller
@@ -15,13 +16,23 @@ class CursoController extends Controller
     public function create(){
         return view('cursos.create');
     }
-    public function store(Request $request){
+    
+    
+    //Si la validación se hace desde un Request
+    public function store(StoreCurso $request){
+    //Si la validación se hace en el controlador se pone como sigue
+    //public function store(Request $request){
 
+        /*
+        La validación se puede hacer aqui, pero por organización se movió
+        al request app/Http/Requests/StoreCurso.php
+    
         $request->validate([
-            'nombre'=>'required',
+            'nombre'=>'required|min:5|max:10',
             'descripcion'=>'required',
             'categoria'=>'required'
         ]);
+        */
 
         $curso = new Curso();
         $curso->nombre = $request->nombre;
@@ -46,6 +57,12 @@ class CursoController extends Controller
         return view('cursos.edit', compact('curso'));
     }
     public function update(Request $request, Curso $curso){
+
+        $request->validate([
+            'nombre'=>'required',
+            'descripcion'=>'required',
+            'categoria'=>'required'
+        ]);
 
         $curso->nombre = $request->nombre;
         $curso->descripcion = $request->descripcion;
