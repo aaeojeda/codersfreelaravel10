@@ -21,7 +21,7 @@
         <label>
             Descripcion
             <br>
-            <textarea name="descripcion" rows="5">{{{{old('descripcion',$curso->descripcion)}}}}</textarea>
+            <textarea name="descripcion" rows="5">{{old('descripcion',$curso->descripcion)}}</textarea>
         </label>
         @error('descripcion')
             <br><small><i>*{{$message}}</i></small><br>
@@ -30,7 +30,7 @@
         <label>
             Categoria
             <br>
-            <input type="text" name="categoria" value="{{{{old('categoria',$curso->categoria)}}}}">
+            <input type="text" name="categoria" value="{{old('categoria',$curso->categoria)}}">
         </label>
         @error('categoria')
             <br><small><i>*{{$message}}</i></small><br>
